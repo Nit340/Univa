@@ -41,6 +41,12 @@
             padding: 0 20px;
         }
         
+        section {
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
         /* Header & Navigation */
         header {
             background-color: white;
@@ -204,23 +210,40 @@
             color: white;
         }
         
-        /* Hero Section */
+        /* New Hero Section */
         .hero {
-            padding: 150px 0 100px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            animation: fadeIn 1s ease;
+            padding: 180px 0 100px;
+            background: linear-gradient(135deg, #f6f9ff 0%, #e9f2ff 100%);
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(122, 108, 247, 0.1) 0%, rgba(122, 108, 247, 0.05) 100%);
+            z-index: 0;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(124, 58, 237, 0.05) 100%);
+            z-index: 0;
         }
         
         .hero-content {
-            flex: 1;
-            padding-right: 40px;
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
         }
         
         .hero h1 {
@@ -229,6 +252,22 @@
             margin-bottom: 20px;
             color: var(--dark);
             animation: slideInLeft 0.8s ease;
+        }
+        
+        .hero h1 span {
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .hero h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: rgba(74, 108, 247, 0.2);
+            z-index: -1;
         }
         
         @keyframes slideInLeft {
@@ -250,31 +289,94 @@
         }
         
         .hero-image {
-            flex: 1;
-            text-align: center;
-            animation: slideInRight 1s ease;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50%;
+            max-width: 600px;
+            z-index: 1;
+            animation: float 6s ease-in-out infinite;
         }
         
-        @keyframes slideInRight {
-            from { transform: translateX(50px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
+        @keyframes float {
+            0% { transform: translateY(-50%) translateX(0); }
+            50% { transform: translateY(-55%) translateX(-10px); }
+            100% { transform: translateY(-50%) translateX(0); }
         }
         
         .hero-image img {
-            max-width: 100%;
+            width: 100%;
             border-radius: 10px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
             transition: var(--transition);
         }
         
-        .hero-image img:hover {
-            transform: scale(1.02);
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid var(--light-gray);
+            animation: slideInLeft 1.4s ease;
+        }
+        
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .stat-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .stat-content h4 {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+        
+        .stat-content p {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin: 0;
         }
         
         /* Stats Section */
         .stats {
-            padding: 60px 0;
-            background-color: white;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        }
+        
+        .stats::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: -100px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(74, 108, 247, 0.1) 0%, rgba(74, 108, 247, 0.05) 100%);
+            z-index: 0;
+        }
+        
+        .stats::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(124, 58, 237, 0.05) 100%);
+            z-index: 0;
         }
         
         .stats-grid {
@@ -282,15 +384,21 @@
             grid-template-columns: repeat(4, 1fr);
             gap: 30px;
             text-align: center;
+            position: relative;
+            z-index: 2;
         }
         
         .stat-item {
-            padding: 30px;
+            padding: 40px 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: var(--transition);
         }
         
         .stat-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
         
         .stat-number {
@@ -307,14 +415,26 @@
         
         /* Features Section */
         .features {
-            padding: 100px 0;
-            background-color: white;
+            background: linear-gradient(135deg, #f6f9ff 0%, #e9f2ff 100%);
+        }
+        
+        .features::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(74, 108, 247, 0.1) 0%, rgba(74, 108, 247, 0.05) 100%);
+            z-index: 0;
         }
         
         .section-title {
             text-align: center;
             margin-bottom: 60px;
-            animation: fadeIn 1s ease;
+            position: relative;
+            z-index: 2;
         }
         
         .section-title h2 {
@@ -323,34 +443,45 @@
             margin-bottom: 20px;
         }
         
+        .section-title h2 span {
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .section-title h2 span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: rgba(74, 108, 247, 0.2);
+            z-index: -1;
+        }
+        
         .section-title p {
             color: var(--gray);
             max-width: 600px;
             margin: 0 auto;
+            font-size: 1.1rem;
         }
         
         .features-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
+            position: relative;
+            z-index: 2;
         }
         
         .feature-card {
-            background-color: var(--light);
-            padding: 30px;
+            background-color: white;
+            padding: 40px 30px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: var(--transition);
-            animation: fadeIn 1s ease;
-            animation-fill-mode: backwards;
+            text-align: center;
         }
-        
-        .feature-card:nth-child(1) { animation-delay: 0.2s; }
-        .feature-card:nth-child(2) { animation-delay: 0.4s; }
-        .feature-card:nth-child(3) { animation-delay: 0.6s; }
-        .feature-card:nth-child(4) { animation-delay: 0.8s; }
-        .feature-card:nth-child(5) { animation-delay: 1s; }
-        .feature-card:nth-child(6) { animation-delay: 1.2s; }
         
         .feature-card:hover {
             transform: translateY(-10px);
@@ -358,20 +489,27 @@
         }
         
         .feature-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 20px;
+            width: 70px;
+            height: 70px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            margin: 0 auto 25px;
             transition: var(--transition);
         }
         
         .feature-card:hover .feature-icon {
-            transform: scale(1.2);
-            color: var(--secondary);
+            transform: scale(1.1) rotate(5deg);
         }
         
         .feature-card h3 {
             font-size: 1.5rem;
             margin-bottom: 15px;
+            color: var(--dark);
         }
         
         .feature-card p {
@@ -380,8 +518,19 @@
         
         /* How It Works Section */
         .how-it-works {
-            padding: 100px 0;
-            background-color: #f1f5f9;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        }
+        
+        .how-it-works::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(124, 58, 237, 0.05) 100%);
+            z-index: 0;
         }
         
         .steps {
@@ -389,6 +538,7 @@
             justify-content: space-between;
             margin-top: 50px;
             position: relative;
+            z-index: 2;
         }
         
         .steps:before {
@@ -439,6 +589,7 @@
         .step h3 {
             font-size: 1.5rem;
             margin-bottom: 15px;
+            color: var(--dark);
         }
         
         .step p {
@@ -447,30 +598,36 @@
         
         /* Testimonials */
         .testimonials {
-            padding: 100px 0;
-            background-color: white;
+            background: linear-gradient(135deg, #f6f9ff 0%, #e9f2ff 100%);
+        }
+        
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(74, 108, 247, 0.1) 0%, rgba(74, 108, 247, 0.05) 100%);
+            z-index: 0;
         }
         
         .testimonial-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 30px;
+            position: relative;
+            z-index: 2;
         }
         
         .testimonial-card {
-            background-color: var(--light);
-            padding: 30px;
+            background-color: white;
+            padding: 40px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: var(--transition);
-            animation: fadeIn 1s ease;
-            animation-fill-mode: backwards;
         }
-        
-        .testimonial-card:nth-child(1) { animation-delay: 0.2s; }
-        .testimonial-card:nth-child(2) { animation-delay: 0.4s; }
-        .testimonial-card:nth-child(3) { animation-delay: 0.6s; }
-        .testimonial-card:nth-child(4) { animation-delay: 0.8s; }
         
         .testimonial-card:hover {
             transform: translateY(-5px);
@@ -483,10 +640,12 @@
             color: var(--dark);
             position: relative;
             padding-left: 30px;
+            font-size: 1.1rem;
+            line-height: 1.8;
         }
         
         .testimonial-text:before {
-            content: """;
+            content: "";
             font-size: 4rem;
             color: var(--primary);
             opacity: 0.2;
@@ -502,8 +661,8 @@
         }
         
         .author-image {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             margin-right: 15px;
@@ -513,10 +672,12 @@
             justify-content: center;
             font-weight: bold;
             color: white;
+            font-size: 1.2rem;
         }
         
         .author-details h4 {
             font-size: 1.1rem;
+            color: var(--dark);
         }
         
         .author-details p {
@@ -524,148 +685,71 @@
             font-size: 0.9rem;
         }
         
-        /* Pricing */
-        .pricing {
-            padding: 100px 0;
-            background-color: #f1f5f9;
-        }
-        
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-        
-        .pricing-card {
-            background-color: white;
-            padding: 40px 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            text-align: center;
-            transition: var(--transition);
-            animation: fadeIn 1s ease;
-            animation-fill-mode: backwards;
-        }
-        
-        .pricing-card:nth-child(1) { animation-delay: 0.2s; }
-        .pricing-card:nth-child(2) { animation-delay: 0.4s; }
-        .pricing-card:nth-child(3) { animation-delay: 0.6s; }
-        
-        .pricing-card.featured {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            transform: scale(1.05);
-        }
-        
-        .pricing-card.featured .btn {
-            background-color: white;
-            color: var(--primary);
-        }
-        
-        .pricing-card.featured .price {
-            color: white;
-        }
-        
-        .pricing-card.featured p {
-            color: rgba(255, 255, 255, 0.8);
-        }
-        
-        .pricing-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .pricing-card.featured:hover {
-            transform: scale(1.05) translateY(-10px);
-        }
-        
-        .pricing-header h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-        
-        .price {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 20px;
-            transition: var(--transition);
-        }
-        
-        .pricing-card:hover .price {
-            transform: scale(1.1);
-        }
-        
-        .pricing-features {
-            list-style: none;
-            margin: 30px 0;
-            text-align: left;
-        }
-        
-        .pricing-features li {
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            transition: var(--transition);
-        }
-        
-        .pricing-features li:hover {
-            transform: translateX(5px);
-        }
-        
-        .pricing-features li i {
-            color: var(--primary);
-            margin-right: 10px;
-        }
-        
-        .pricing-card.featured .pricing-features li i {
-            color: white;
-        }
-        
         /* FAQ Section */
         .faq {
-            padding: 100px 0;
-            background-color: white;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        }
+        
+        .faq::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(124, 58, 237, 0.05) 100%);
+            z-index: 0;
         }
         
         .faq-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 30px;
+            position: relative;
+            z-index: 2;
         }
         
         .faq-item {
             margin-bottom: 20px;
-            border-radius: 8px;
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            background: white;
+            transition: var(--transition);
+        }
+        
+        .faq-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
         
         .faq-question {
-            padding: 20px;
-            background-color: var(--light);
+            padding: 25px;
+            background-color: white;
             font-weight: 600;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
             transition: var(--transition);
+            font-size: 1.1rem;
         }
         
         .faq-question:hover {
-            background-color: var(--primary);
-            color: white;
+            color: var(--primary);
         }
         
         .faq-answer {
-            padding: 0 20px;
+            padding: 0 25px;
             max-height: 0;
             overflow: hidden;
             transition: var(--transition);
+            color: var(--gray);
         }
         
         .faq-item.active .faq-answer {
-            padding: 20px;
+            padding: 0 25px 25px;
             max-height: 300px;
         }
         
@@ -675,11 +759,40 @@
         
         /* CTA Section */
         .cta {
-            padding: 100px 0;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             text-align: center;
-            animation: fadeIn 1s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 1;
+        }
+        
+        .cta::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 1;
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 2;
         }
         
         .cta h2 {
@@ -700,6 +813,8 @@
             font-size: 1.1rem;
             padding: 15px 30px;
             animation: pulse 2s infinite;
+            position: relative;
+            z-index: 2;
         }
         
         @keyframes pulse {
@@ -718,8 +833,20 @@
         footer {
             background-color: var(--dark);
             color: white;
-            padding: 70px 0 30px;
-            animation: fadeIn 1s ease;
+            padding: 100px 0 30px;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            z-index: 1;
         }
         
         .footer-grid {
@@ -727,17 +854,23 @@
             grid-template-columns: 2fr 1fr 1fr 1fr;
             gap: 40px;
             margin-bottom: 50px;
+            position: relative;
+            z-index: 2;
         }
         
         .footer-about h3 {
             font-size: 1.5rem;
             margin-bottom: 20px;
             color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
         .footer-about p {
             color: #94a3b8;
             margin-bottom: 20px;
+            line-height: 1.8;
         }
         
         .social-links {
@@ -774,13 +907,20 @@
         }
         
         .footer-links li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
         
         .footer-links a {
             color: #94a3b8;
             text-decoration: none;
             transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer-links a i {
+            width: 16px;
         }
         
         .footer-links a:hover {
@@ -794,12 +934,13 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: #94a3b8;
             font-size: 0.9rem;
+            position: relative;
+            z-index: 2;
         }
         
         /* Responsive Design */
         @media (max-width: 992px) {
             .features-grid,
-            .pricing-grid,
             .testimonial-grid,
             .faq-grid,
             .stats-grid {
@@ -818,24 +959,41 @@
             .steps:before {
                 display: none;
             }
-        }
-        
-        @media (max-width: 768px) {
+            
+            .hero-image {
+                position: relative;
+                transform: none;
+                width: 100%;
+                max-width: 100%;
+                margin-top: 50px;
+                animation: float 6s ease-in-out infinite;
+            }
+            
+            @keyframes float {
+                0% { transform: translateY(0); }
+                50% { transform: translateY(-10px); }
+                100% { transform: translateY(0); }
+            }
+            
             .hero {
-                flex-direction: column;
+                padding: 150px 0 80px;
                 text-align: center;
-                padding: 120px 0 60px;
             }
             
             .hero-content {
-                padding-right: 0;
-                margin-bottom: 40px;
+                max-width: 100%;
             }
             
             .hero-buttons {
                 justify-content: center;
             }
             
+            .hero-stats {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
             .nav-links {
                 display: none;
             }
@@ -873,23 +1031,39 @@
             .dropdown.active .dropdown-content {
                 display: block;
             }
-        }
-        
-        @media (max-width: 576px) {
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
             .features-grid,
-            .pricing-grid,
             .testimonial-grid,
             .faq-grid,
             .stats-grid {
                 grid-template-columns: 1fr;
             }
-            
+        }
+        
+        @media (max-width: 576px) {
             .footer-grid {
                 grid-template-columns: 1fr;
             }
             
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
             }
         }
     </style>
@@ -939,15 +1113,46 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Simplify Your Business with Univa</h1>
-                <p>Univa is a powerful SaaS platform that helps businesses optimize their workflows, increase productivity, and drive growth through intelligent automation. Join thousands of companies that trust Univa to transform their operations.</p>
+                <h1>Transform Your Business with <span>Intelligent Automation</span></h1>
+                <p>Univa is the all-in-one SaaS platform that helps businesses optimize workflows, increase productivity, and drive growth through powerful AI-driven automation tools.</p>
                 <div class="hero-buttons">
                     <a href="#" class="btn">Start Free Trial</a>
-                    <a href="#" class="btn btn-outline">Watch Demo</a>
+                    <a href="#" class="btn btn-outline">
+                        <i class="fas fa-play-circle"></i> Watch Demo
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h4>42%</h4>
+                            <p>Average productivity increase</p>
+                        </div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h4>15+</h4>
+                            <p>Hours saved per week</p>
+                        </div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h4>500+</h4>
+                            <p>Businesses transformed</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="hero-image">
-                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&h=400&q=80" alt="Univa Dashboard">
+                <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Univa Dashboard">
             </div>
         </div>
     </section>
@@ -955,6 +1160,10 @@
     <!-- Stats Section -->
     <section class="stats">
         <div class="container">
+            <div class="section-title">
+                <h2>Why Businesses <span>Choose Univa</span></h2>
+                <p>Join thousands of companies that trust Univa to transform their operations</p>
+            </div>
             <div class="stats-grid">
                 <div class="stat-item">
                     <div class="stat-number">95%</div>
@@ -980,7 +1189,7 @@
     <section class="features">
         <div class="container">
             <div class="section-title">
-                <h2>Powerful Features</h2>
+                <h2>Powerful <span>Features</span></h2>
                 <p>Discover how Univa can transform your business operations with these cutting-edge features</p>
             </div>
             <div class="features-grid">
@@ -1034,7 +1243,7 @@
     <section class="how-it-works">
         <div class="container">
             <div class="section-title">
-                <h2>How Univa Works</h2>
+                <h2>How <span>Univa Works</span></h2>
                 <p>Get started with Univa in just a few simple steps</p>
             </div>
             <div class="steps">
@@ -1066,7 +1275,7 @@
     <section class="testimonials">
         <div class="container">
             <div class="section-title">
-                <h2>What Our Customers Say</h2>
+                <h2>What Our <span>Customers Say</span></h2>
                 <p>Hear from businesses that have transformed their operations with Univa</p>
             </div>
             <div class="testimonial-grid">
@@ -1114,71 +1323,11 @@
         </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section class="pricing">
-        <div class="container">
-            <div class="section-title">
-                <h2>Simple, Transparent Pricing</h2>
-                <p>Choose the plan that works best for your business size and needs</p>
-            </div>
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>Starter</h3>
-                        <div class="price">$29<span>/month</span></div>
-                        <p>Perfect for small teams getting started</p>
-                    </div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Up to 5 users</li>
-                        <li><i class="fas fa-check"></i> Basic automation</li>
-                        <li><i class="fas fa-check"></i> Workflow management</li>
-                        <li><i class="fas fa-check"></i> Standard reports</li>
-                        <li><i class="fas fa-times"></i> Advanced analytics</li>
-                        <li><i class="fas fa-times"></i> Data integration</li>
-                    </ul>
-                    <a href="#" class="btn">Get Started</a>
-                </div>
-                <div class="pricing-card featured">
-                    <div class="pricing-header">
-                        <h3>Professional</h3>
-                        <div class="price">$79<span>/month</span></div>
-                        <p>Our most popular plan for growing businesses</p>
-                    </div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Up to 20 users</li>
-                        <li><i class="fas fa-check"></i> Advanced automation</li>
-                        <li><i class="fas fa-check"></i> Workflow management</li>
-                        <li><i class="fas fa-check"></i> Custom reports</li>
-                        <li><i class="fas fa-check"></i> Advanced analytics</li>
-                        <li><i class="fas fa-check"></i> Data integration</li>
-                    </ul>
-                    <a href="#" class="btn">Get Started</a>
-                </div>
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>Enterprise</h3>
-                        <div class="price">$199<span>/month</span></div>
-                        <p>For large organizations with complex needs</p>
-                    </div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Unlimited users</li>
-                        <li><i class="fas fa-check"></i> AI-powered automation</li>
-                        <li><i class="fas fa-check"></i> Advanced workflow management</li>
-                        <li><i class="fas fa-check"></i> Custom reporting suite</li>
-                        <li><i class="fas fa-check"></i> Predictive analytics</li>
-                        <li><i class="fas fa-check"></i> Unlimited data integration</li>
-                    </ul>
-                    <a href="#" class="btn">Contact Sales</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- FAQ Section -->
     <section class="faq">
         <div class="container">
             <div class="section-title">
-                <h2>Frequently Asked Questions</h2>
+                <h2>Frequently <span>Asked Questions</span></h2>
                 <p>Find answers to common questions about Univa</p>
             </div>
             <div class="faq-grid">
@@ -1243,9 +1392,11 @@
     <!-- CTA Section -->
     <section class="cta">
         <div class="container">
-            <h2>Ready to Transform Your Business?</h2>
-            <p>Join thousands of companies that use Univa to streamline operations and boost productivity.</p>
-            <a href="#" class="btn">Start Your Free Trial</a>
+            <div class="cta-content">
+                <h2>Ready to Transform Your Business?</h2>
+                <p>Join thousands of companies that use Univa to streamline operations and boost productivity.</p>
+                <a href="#" class="btn">Start Your Free Trial</a>
+            </div>
         </div>
     </section>
 
@@ -1254,7 +1405,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-about">
-                    <h3>Univa</h3>
+                    <h3><i class="fas fa-cube"></i> Univa</h3>
                     <p>Univa is a powerful SaaS platform that helps businesses optimize their workflows, increase productivity, and drive growth through intelligent automation.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -1266,31 +1417,31 @@
                 <div class="footer-links">
                     <h4>Solutions</h4>
                     <ul>
-                        <li><a href="#">AI Automation</a></li>
-                        <li><a href="#">Analytics</a></li>
-                        <li><a href="#">Workflow Management</a></li>
-                        <li><a href="#">Data Integration</a></li>
-                        <li><a href="#">Mobile Accessibility</a></li>
+                        <li><a href="#"><i class="fas fa-robot"></i> AI Automation</a></li>
+                        <li><a href="#"><i class="fas fa-chart-pie"></i> Analytics</a></li>
+                        <li><a href="#"><i class="fas fa-project-diagram"></i> Workflow Management</a></li>
+                        <li><a href="#"><i class="fas fa-database"></i> Data Integration</a></li>
+                        <li><a href="#"><i class="fas fa-mobile-alt"></i> Mobile Accessibility</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
                     <h4>Company</h4>
                     <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Press</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="#"><i class="fas fa-building"></i> About Us</a></li>
+                        <li><a href="#"><i class="fas fa-briefcase"></i> Careers</a></li>
+                        <li><a href="#"><i class="fas fa-blog"></i> Blog</a></li>
+                        <li><a href="#"><i class="fas fa-newspaper"></i> Press</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
                     <h4>Resources</h4>
                     <ul>
-                        <li><a href="#">Documentation</a></li>
-                        <li><a href="#">API Reference</a></li>
-                        <li><a href="#">Tutorials</a></li>
-                        <li><a href="#">Case Studies</a></li>
-                        <li><a href="#">Support Center</a></li>
+                        <li><a href="#"><i class="fas fa-book"></i> Documentation</a></li>
+                        <li><a href="#"><i class="fas fa-code"></i> API Reference</a></li>
+                        <li><a href="#"><i class="fas fa-video"></i> Tutorials</a></li>
+                        <li><a href="#"><i class="fas fa-file-alt"></i> Case Studies</a></li>
+                        <li><a href="#"><i class="fas fa-headset"></i> Support Center</a></li>
                     </ul>
                 </div>
             </div>
@@ -1353,7 +1504,7 @@
         
         // Animation on scroll
         function animateOnScroll() {
-            const elements = document.querySelectorAll('.feature-card, .testimonial-card, .pricing-card, .stat-item');
+            const elements = document.querySelectorAll('.feature-card, .testimonial-card, .stat-item, .faq-item');
             
             elements.forEach(element => {
                 const elementPosition = element.getBoundingClientRect().top;
@@ -1367,7 +1518,7 @@
         }
         
         // Initialize elements for animation
-        document.querySelectorAll('.feature-card, .testimonial-card, .pricing-card, .stat-item').forEach(element => {
+        document.querySelectorAll('.feature-card, .testimonial-card, .stat-item, .faq-item').forEach(element => {
             element.style.opacity = 0;
             element.style.transform = 'translateY(20px)';
             element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
