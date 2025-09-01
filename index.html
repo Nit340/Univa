@@ -90,6 +90,7 @@
         .nav-links {
             display: flex;
             list-style: none;
+            align-items: center;
         }
         
         .nav-links li {
@@ -124,53 +125,6 @@
         
         .nav-links > li > a:hover:after {
             width: 100%;
-        }
-        
-        /* Dropdown Menu */
-        .dropdown {
-            position: relative;
-        }
-        
-        .dropdown-content {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: white;
-            min-width: 200px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            border-radius: 6px;
-            z-index: 1;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: var(--transition);
-            padding: 10px 0;
-        }
-        
-        .dropdown:hover .dropdown-content {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        
-        .dropdown-content a {
-            color: var(--dark);
-            padding: 12px 20px;
-            text-decoration: none;
-            display: block;
-            transition: var(--transition);
-        }
-        
-        .dropdown-content a:hover {
-            background-color: var(--light);
-            color: var(--primary);
-            padding-left: 25px;
-        }
-        
-        .dropdown-content a i {
-            margin-right: 10px;
-            width: 16px;
-            text-align: center;
         }
         
         .nav-toggle {
@@ -310,44 +264,6 @@
             border-radius: 10px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
             transition: var(--transition);
-        }
-        
-        .hero-stats {
-            display: flex;
-            gap: 40px;
-            margin-top: 40px;
-            padding-top: 30px;
-            border-top: 1px solid var(--light-gray);
-            animation: slideInLeft 1.4s ease;
-        }
-        
-        .stat {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .stat-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-        }
-        
-        .stat-content h4 {
-            font-size: 1.5rem;
-            color: var(--dark);
-            margin-bottom: 5px;
-        }
-        
-        .stat-content p {
-            font-size: 0.9rem;
-            color: var(--gray);
-            margin: 0;
         }
         
         /* Stats Section */
@@ -987,10 +903,6 @@
             .hero-buttons {
                 justify-content: center;
             }
-            
-            .hero-stats {
-                justify-content: center;
-            }
         }
         
         @media (max-width: 768px) {
@@ -1018,27 +930,8 @@
                 margin: 10px 0;
             }
             
-            .dropdown-content {
-                position: static;
-                opacity: 1;
-                visibility: visible;
-                transform: none;
-                box-shadow: none;
-                display: none;
-                margin-left: 20px;
-            }
-            
-            .dropdown.active .dropdown-content {
-                display: block;
-            }
-            
             .hero h1 {
                 font-size: 2.8rem;
-            }
-            
-            .hero-stats {
-                flex-direction: column;
-                gap: 20px;
             }
             
             .features-grid,
@@ -1082,29 +975,12 @@
                 </button>
                 <ul class="nav-links">
                     <li><a href="#">Home</a></li>
-                    <li class="dropdown">
-                        <a href="#">Solutions <i class="fas fa-chevron-down"></i></a>
-                        <div class="dropdown-content">
-                            <a href="#"><i class="fas fa-robot"></i> AI Automation</a>
-                            <a href="#"><i class="fas fa-chart-pie"></i> Analytics</a>
-                            <a href="#"><i class="fas fa-project-diagram"></i> Workflow Management</a>
-                            <a href="#"><i class="fas fa-database"></i> Data Integration</a>
-                        </div>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#">Resources <i class="fas fa-chevron-down"></i></a>
-                        <div class="dropdown-content">
-                            <a href="#"><i class="fas fa-book"></i> Documentation</a>
-                            <a href="#"><i class="fas fa-video"></i> Tutorials</a>
-                            <a href="#"><i class="fas fa-blog"></i> Blog</a>
-                            <a href="#"><i class="fas fa-file-alt"></i> Case Studies</a>
-                        </div>
-                    </li>
+                    <li><a href="#">Services</a></li>
                     <li><a href="#">Pricing</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Testimonials</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#" class="btn">Free Trial</a></li>
                 </ul>
-                <a href="#" class="btn">Get Started</a>
             </nav>
         </div>
     </header>
@@ -1120,35 +996,6 @@
                     <a href="#" class="btn btn-outline">
                         <i class="fas fa-play-circle"></i> Watch Demo
                     </a>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <div class="stat-icon">
-                            <i class="fas fa-rocket"></i>
-                        </div>
-                        <div class="stat-content">
-                            <h4>42%</h4>
-                            <p>Average productivity increase</p>
-                        </div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div class="stat-content">
-                            <h4>15+</h4>
-                            <p>Hours saved per week</p>
-                        </div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div class="stat-content">
-                            <h4>500+</h4>
-                            <p>Businesses transformed</p>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="hero-image">
